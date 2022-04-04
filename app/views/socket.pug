@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome #{nick}
+  form(id="send" action="/" method="POST")
+    select(id="xxx", name="xxxyyy")
+      -for(var i = 1;i<10;i++){
+      option(value="#{i}") Sala de chat #{i}
+      -}
+    div(id="chat") #{text}
+    input(type="text" id="msg" placeholder="")
+    input(type="submit")
+  
+<!--Cargamos los scripts /socket.io/socket.io.js y chat.js para -->
+  script(type='text/javascript', src='')
+  script(type='text/javascript', src='')
