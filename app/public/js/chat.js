@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
   /*
    * Acciones que se realizarán cuando otro usuario envia mensaje
    */
-  socket.on("", (data) => {
+  socket.on("toChat", (data) => {
     console.log(data);
+    var chatBox = document.getElementById("chat");
+    chatBox.innerHTML += data.text + "<br>";
   });
 
   /**
@@ -26,7 +28,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var chatBox = document.getElementById("chat");
     var msg = msgInput.value;
 
+    //Mostramos el mensaje en la ventana para el usuario que lo envia
+    chatBox.innerHTML += `Yo: ${msgInput.value}<br>`;
+
+    // Definimos el mensaje que vamos a enviar
+    var toSend = { user: "Yo", text: msg };
+
+    //Enviamos el mensaje al servidor utilizando el evento "broadcast" definido por nosotros
+    socket.emit("broadcast", toSend);
+
   });
+
+  
 
   
 });
