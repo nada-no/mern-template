@@ -2,7 +2,7 @@ var express = require("express"),
   router = express.Router(); 
 
 router.route("/").get(async (req, res, next) => {
-  res.render("socket");
+  res.render("index");
 });
 
 module.exports = router;

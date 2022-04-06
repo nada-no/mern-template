@@ -1,16 +1,29 @@
 require("./io");
 require("dotenv").config();
 
-const port = process.env.SERVER_PORT || 6000;
+const port = process.env.SERVER_PORT || 3000;
 var express = require("express"),
   app = express(),
   server = require("http").createServer(app),
   path = require("path");
+  mongoose = require('mongoose');
+
+
 
 server.listen(port, (err, res) => {
   if (err) console.log(`ERROR: Connecting APP ${err}`);
   else console.log(`Server is running on port ${port}`);
 });
+
+//creamos la base de datos
+mongoose.connect(
+  `mongodb://root:pass12345@mongodb-chat:27017/users?authSource=admin`,
+  { useNewUrlParser: true },
+  (err, res) => {
+    if (err) console.log(`ERROR: connecting to Database.  ${err}`);
+    else console.log(`Database Online: ${process.env.MONGO_DB}`);
+  }
+);
 
 // Import routes of our app
 
