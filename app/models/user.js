@@ -6,5 +6,7 @@ var userSchema = new Schema({
     password: String
 });
 
+
+
 //Export the schema
 module.exports = mongoose.model('User', userSchema);

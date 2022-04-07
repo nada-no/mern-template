@@ -1,12 +1,13 @@
 var User = require('../models/user');
+var jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
 
 //Create a new user and save it
 var add = (req, res, next)=>{
     var user = new User({name: req.body.name, password: req.body.password});
     user.save();
     console.log(user);
-    return user;
-
+    next();
 };
 
 //find all people
@@ -23,8 +24,38 @@ var find = (req, res)=>{
     })
 };
 
+//login
+var login = (req, res, next)=>{
+    User.findOne({name: req.body.name})
+    .exec((err, user) => {
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+          if (!user) {
+            return res.status(404).send({ message: "User Not found." });
+          }
+          if(req.body.password != user.password){
+            return res.status(404).send({ message: "Incorrect password" });
+          }
+          //create token for the auth
+          var token = jwt.sign({ id: user.id }, config.secret, {
+            expiresIn: 86400 // 24 hours
+          });
+          res.status(200).send({
+            id: user._id,
+            name: user.name,
+            accessToken: token
+          });
+    });
+    };
+        
+
+
+
 module.exports={
 add,
 list,
-find
+find,
+login
 }

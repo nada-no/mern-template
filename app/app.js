@@ -21,7 +21,7 @@ mongoose.connect(
   { useNewUrlParser: true },
   (err, res) => {
     if (err) console.log(`ERROR: connecting to Database.  ${err}`);
-    else console.log(`Database Online: ${process.env.MONGO_DB}`);
+    else console.log("Successfully connect to MongoDB.");
   }
 );
 
