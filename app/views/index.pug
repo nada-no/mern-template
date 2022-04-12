@@ -8,4 +8,6 @@ head
     label(for='pass') Contrase&ntilde;a: 
     input(type='password' name='password')
     input(type='submit' value='Enviar')
+    if !auth 
+      p Credenciales incorrectas, por favor regístrate o loguéate.
   a(class='btn btn-primary' href='/register') Registrarse

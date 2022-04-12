@@ -6,7 +6,9 @@ var express = require("express"),
   app = express(),
   server = require("http").createServer(app),
   path = require("path");
-  mongoose = require('mongoose');
+mongoose = require('mongoose');
+var session = require("express-session");
+app.use(session({ secret: 'keyboard cat', auth: false }));
 
 
 
