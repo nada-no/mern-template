@@ -13,15 +13,18 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 
 block content
   h1 Chat
-  p Bienvenido #{session.user} a la sala #{sala}
-  form(id="send" action="/" method="POST")
+  p Bienvenido #{session.user.name} a la sala #{sala}
+  //- form(id="send" action="/" method="POST")
     //- select(id="xxx", name="xxxyyy")
     //-   -for(var i = 1;i<5;i++){
     //-   option(value="#{i}") Sala de chat #{i}
     //-   -}
-    div(id="chat") #{content}
-    input(type="text" id="msg" placeholder="")
-    input.btn.btn-default(type="submit")
+  div(id="chat") 
+  input(type="text" id="msg" placeholder="")
+  button.btn.btn-default(id="send") Enviar
   
   script(type='text/javascript', src='http://localhost:2000/socket.io/socket.io.js')
   script(type='text/javascript', src='/js/chat.js')
+  script(type='text/javascript') var sala = #{sala}; var usuario = JSON.parse('!{JSON.stringify(session.user)}');
+
+    

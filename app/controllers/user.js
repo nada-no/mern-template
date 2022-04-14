@@ -11,7 +11,7 @@ var User = require('../models/user');
 var add = (req, res, next) => {
   var user = new User({ name: req.body.name, password: req.body.password });
   user.save();
-  console.log(user);
+  // console.log(user);
   next();
 };
 
@@ -56,9 +56,9 @@ var login = (req, res, next) => {
       //   name: user.name,
       //   accessToken: token
       // });
-      req.session.auth = true;
-      req.session.user = req.body.name;
-      // console.log(req.body.name);
+      req.session.auth = true; //hay que probar de poner el objeto user
+      req.session.user = user;
+      console.log(user);
       res.redirect('/chat/list');
     });
 };

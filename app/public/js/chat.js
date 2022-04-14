@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function (event) {
   //Nos conectamos al servicio de socket
   const socket = io("http://localhost:2000");
@@ -16,14 +17,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   socket.on("toChat", (data) => {
     console.log(data);
     var chatBox = document.getElementById("chat");
-    chatBox.innerHTML += data.text + "<br>";
+    chatBox.innerHTML += data.user.name + " " + data.date + " sala " + data.sala + ": <br>" + data.content + "<br>";
   });
 
   /**
    * Acciones cuando se pulsa el botón de "Enviar"
    */
-  document.getElementById("send").addEventListener("submit", (e) => {
-    e.preventDefault();
+  document.getElementById("send").addEventListener("mousedown", (e) => {
+    // e.preventDefault();
     var msgInput = document.getElementById("msg");
     var chatBox = document.getElementById("chat");
     var msg = msgInput.value;
@@ -32,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     chatBox.innerHTML += `Yo: ${msgInput.value}<br>`;
 
     // Definimos el mensaje que vamos a enviar
-    var toSend = { user: "Yo", text: msg };
+    var date = new Date();
+    var toSend = { user: usuario , sala: sala , content: msg, date: date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours()+ ":" + date.getMinutes() + ":" + date.getSeconds() };
 
     //Enviamos el mensaje al servidor utilizando el evento "broadcast" definido por nosotros
     socket.emit("broadcast", toSend);
