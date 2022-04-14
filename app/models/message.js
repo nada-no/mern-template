@@ -5,7 +5,7 @@ var messageSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     content: String,
     sala: String,
-    date: Date
+    date: String
 });
 
 

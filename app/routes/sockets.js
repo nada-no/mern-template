@@ -44,6 +44,7 @@ router.get('/history/list', function (req, res, next) {
 
 //chat list
 router.get('/chat/view/:sala', function (req, res, next) {
+  req.session.sala = req.params.sala;
   res.render("socket",{sala: req.params.sala});
 });
 

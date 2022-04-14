@@ -1,7 +1,9 @@
 const socketPort = 2000;
 
+const session = require("express-session");
 const { Server } = require("socket.io");
 const socketServer = require("http").createServer();
+const mensaje = require("./controllers/message");
 
 socketServer.listen(socketPort, (err, res) => {
   if (err) console.log(`ERROR: Connecting APP ${err}`);
@@ -17,7 +19,7 @@ const io = new Server(socketServer, {
 
 //primera conexion
 io.on("connection", (socket) => {
-  console.log("Nuevo cliente conectado");
+  console.log("Nuevo cliente conectado a la sala " + session.sala);
   socket.emit("connected", {
     msg: "Bienvenido al chat",
   });
@@ -29,5 +31,6 @@ io.on("connection", (socket) => {
   //Todos los clientes que estén escuchando el evento "toChat" recibiran el mensaje enviado por el cliente que lanzó el mensaje
   socket.on("broadcast", (data) => {
     socket.broadcast.emit("toChat", data);
+    mensaje.msgAdd(data);
   });
 });

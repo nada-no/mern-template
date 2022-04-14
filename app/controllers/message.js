@@ -1,11 +1,10 @@
-var Message = require('../controllers/message');
+var Message = require('../models/message');
 
 //Create a new message and save it
 var msgAdd = (req, res, next) => {
-    var msg = new Message({ user: req.session.name, content: req.body.content, sala: req.body.sala , date: req.body.date });
+    var msg = new Message({ user: req.user , content: req.content, sala: req.sala , date: req.date });
     msg.save();
-    console.log(msg);
-    next();
+    // console.log(req.user);
   };
 
   module.exports = {
