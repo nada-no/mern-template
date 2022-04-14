@@ -9,5 +9,5 @@ head
     input(type='password' name='password')
     input(type='submit' value='Enviar')
     if !auth 
-      p Credenciales incorrectas, por favor regístrate o loguéate.
+      p.alert.alert-danger Credenciales incorrectas, por favor regístrate o loguéate.
   a(class='btn btn-primary' href='/register') Registrarse

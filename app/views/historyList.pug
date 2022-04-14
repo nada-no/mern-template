@@ -1,0 +1,22 @@
+head
+    title Node-Chat
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    #navbarColor01.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+            li.nav-item
+                a.nav-link(href='/chat/list') Chat
+            li.nav-item.active
+                a.nav-link(href='/history/list') Historial
+        a.my-2.my-lg-0(href='/logout') Log Out
+
+block content
+    div.container
+        h1 Historial
+        h2 Selecciona la sala de chat   
+        form(id="opciones" action="" method="POST")
+             -for(var i = 1;i<6;i++){
+                    a.btn.btn-primary(href=`/history/view/${i}`) Sala de chat #{i}
+            -}
+

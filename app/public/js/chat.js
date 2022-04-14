@@ -1,3 +1,5 @@
+const session = require("express-session");
+
 document.addEventListener("DOMContentLoaded", function (event) {
   //Nos conectamos al servicio de socket
   const socket = io("http://localhost:2000");
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   socket.on("toChat", (data) => {
     console.log(data);
     var chatBox = document.getElementById("chat");
-    chatBox.innerHTML += data.text + "<br>";
+    chatBox.innerHTML += data.content + "<br>";
   });
 
   /**
@@ -32,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     chatBox.innerHTML += `Yo: ${msgInput.value}<br>`;
 
     // Definimos el mensaje que vamos a enviar
-    var toSend = { user: "Yo", text: msg };
+    var toSend = { user: session.user, content: msg, sala: sala, date: new Date()};
+    
 
     //Enviamos el mensaje al servidor utilizando el evento "broadcast" definido por nosotros
     socket.emit("broadcast", toSend);

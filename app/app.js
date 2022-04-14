@@ -8,7 +8,14 @@ var express = require("express"),
   path = require("path");
 mongoose = require('mongoose');
 var session = require("express-session");
-app.use(session({ secret: 'keyboard cat', auth: false }));
+app.use(session({ secret: 'keyboard cat', auth: false , resave: true, saveUninitialized: true}));
+// app.use(express.session(
+//   { secret: "secret", store: new MemoryStore(), maxAge: 86400
+//   }));
+app.use(function(req,res,next){
+  res.locals.session = req.session;
+  next();
+});
 
 
 

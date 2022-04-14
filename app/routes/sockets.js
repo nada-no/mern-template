@@ -29,4 +29,22 @@ router.post('/login', function (req, res, next) {
   res.render("socket");
 });
 
+//logOut
+router.get('/logout', user.logout);
+
+//chat list
+router.get('/chat/list', function (req, res, next) {
+  res.render("salas");
+});
+
+//chat list
+router.get('/history/list', function (req, res, next) {
+  res.render("historyList");
+});
+
+//chat list
+router.get('/chat/view/:sala', function (req, res, next) {
+  res.render("socket",{sala: req.params.sala});
+});
+
 module.exports = router;
