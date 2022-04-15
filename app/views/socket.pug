@@ -8,7 +8,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item.active
         a.nav-link(href='/chat/list') Chat
       li.nav-item
-        a.nav-link(href='/chat/list') Historial
+        a.nav-link(href='/history/list') Historial
     a.my-2.my-lg-0(href='/logout') Log Out
 
 block content
@@ -25,6 +25,6 @@ block content
   
   script(type='text/javascript', src='http://localhost:2000/socket.io/socket.io.js')
   script(type='text/javascript', src='/js/chat.js')
-  script(type='text/javascript') var sala = #{sala}; var usuario = JSON.parse('!{JSON.stringify(session.user)}');
+  script(type='text/javascript') var sala = #{sala}; var usuario = !{JSON.stringify(session.user)};
 
     

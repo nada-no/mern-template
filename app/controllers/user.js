@@ -17,7 +17,8 @@ var add = (req, res, next) => {
 
 //find all people
 var list = (req, res, next) => {
-  User.find(function (err, users) {
+  User.find( (err, users) => {
+    console.log(users)
     return users;
   });
 };

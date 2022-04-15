@@ -2,6 +2,7 @@ var express = require("express"),
   router = express.Router();
 
 const user = require('../controllers/user');
+const message = require('../controllers/message');
 
 //index
 // router.route("/").get(function (req, res, next) {
@@ -9,7 +10,7 @@ const user = require('../controllers/user');
 //   next();
 // });
 router.route("/").get(function (req, res, next) {
-  res.render("index", {auth: true});
+  res.render("index", { auth: true });
 });
 
 //register
@@ -37,15 +38,23 @@ router.get('/chat/list', function (req, res, next) {
   res.render("salas");
 });
 
-//chat list
+//history list
 router.get('/history/list', function (req, res, next) {
   res.render("historyList");
+});
+
+//history
+router.get('/history/view/:sala',  async (req, res, next) => {
+  var messages = await message.getHistoryRoom(req.params.sala)
+  console.log(messages)//aquí es imposible traer los mensajes ni los usuarios ni nada
+  res.render("history", { history: messages });
 });
 
 //chat list
 router.get('/chat/view/:sala', function (req, res, next) {
   req.session.sala = req.params.sala;
-  res.render("socket",{sala: req.params.sala});
+  res.render("socket", { sala: req.params.sala });
 });
+
 
 module.exports = router;
