@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log(data);
     var chatBox = document.getElementById("chat");
     if(data.sala == sala){
-    chatBox.innerHTML += data.user.name + " " + data.date + " sala " + data.sala + ": <br>" + data.content + "<br>";
+    chatBox.innerHTML += data.user + " " + data.date + " sala " + data.sala + ": <br>" + data.content + "<br>";
     }
   });
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // Definimos el mensaje que vamos a enviar
     var date = new Date();
-    var toSend = { user: usuario._id , sala: sala , content: msg, date: date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours()+ ":" + date.getMinutes() + ":" + date.getSeconds() };
+    var toSend = { user: usuario.name , sala: sala , content: msg, date: date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours()+ ":" + date.getMinutes() + ":" + date.getSeconds() };
 
     //Enviamos el mensaje al servidor utilizando el evento "broadcast" definido por nosotros
     socket.emit("broadcast", toSend);

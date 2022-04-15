@@ -1,2 +1,4 @@
-// var historial = JSON.parse('!{JSON.stringify(history)}'); 
-// var historial = JSON.parse(history); 
+const display = document.getElementById("chat");
+for (const mensaje of historial) {
+    display.innerHTML += "<p>[" + mensaje.date + "] " + mensaje.user + ": " + mensaje.content;
+}
