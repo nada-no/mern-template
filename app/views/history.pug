@@ -17,8 +17,10 @@ block content
   
   div(id="chat") 
   
-  button.btn.btn-default(id="delete") Borrar historial
-  script(type='text/javascript') var historial = JSON.parse('!{JSON.stringify(history)}');
+  button.btn.btn-default(id="delete") 
+    a(href=`/history/delete/${sala}`) Borrar historial
+
+  script(type='text/javascript') var historial = JSON.parse('!{JSON.stringify(history)}'); var sala = #{sala};
   script(type='text/javascript' src='/js/history.js')
   
 

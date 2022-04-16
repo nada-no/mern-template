@@ -1,8 +1,8 @@
 var express = require("express"),
   router = express.Router();
 
-const user = require('../controllers/user');
 const message = require('../controllers/message');
+const user = require('../controllers/user');
 
 //index
 // router.route("/").get(function (req, res, next) {
@@ -44,11 +44,15 @@ router.get('/history/list', function (req, res, next) {
 });
 
 //history
-router.get('/history/view/:sala',  async (req, res, next) => {
-  var messages = await message.getHistoryRoom(req.params.sala)
-  console.log(messages)//aquí es imposible traer los mensajes ni los usuarios ni nada
-  res.render("history", { history: messages });
-});
+router.get('/history/view/:sala', message.getHistoryRoom);
+// router.get('/history/view/:sala', async (req, res, next) => {
+//   var messages = await message.getHistoryRoom(req.params.sala)
+//   console.log(messages)//aquí es imposible traer los mensajes ni los usuarios ni nada
+//   res.render("history", { history: messages, sala: req.params.sala });
+// });
+
+//delete history
+router.get('/history/delete/:sala', message.deleteHistory);
 
 //chat list
 router.get('/chat/view/:sala', function (req, res, next) {
