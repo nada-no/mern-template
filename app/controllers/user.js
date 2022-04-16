@@ -37,30 +37,31 @@ var login = (req, res, next) => {
       if (err) {
         res.status(500).send({ message: err });
         return;
+      }else {
+        if (!user) {
+          // return res.status(404).send({ message: "User Not found." });
+          res.render("index", { auth: false });
+          res.end();
+        } else if (req.body.password != user.password) {
+          // return res.status(404).send({ message: "Incorrect password" });
+          res.render("index", { auth: false });
+          res.end();
+        } else {
+        //create token for the auth
+        // var token = jwt.sign({ id: user.id }, config.secret, {
+        //   expiresIn: 86400 // 24 hours
+        // });
+        // res.status(200).send({
+        //   id: user._id,
+        //   name: user.name,
+        //   accessToken: token
+        // });
+          req.session.auth = true; //hay que probar de poner el objeto user
+          req.session.user = user;
+          console.log(user);
+          res.redirect('/chat/list');
+        }
       }
-      if (!user) {
-        // return res.status(404).send({ message: "User Not found." });
-        res.render("index", { auth: false });
-        res.end();
-      }
-      if (req.body.password != user.password) {
-        // return res.status(404).send({ message: "Incorrect password" });
-        res.render("index", { auth: false });
-        res.end();
-      }
-      //create token for the auth
-      // var token = jwt.sign({ id: user.id }, config.secret, {
-      //   expiresIn: 86400 // 24 hours
-      // });
-      // res.status(200).send({
-      //   id: user._id,
-      //   name: user.name,
-      //   accessToken: token
-      // });
-      req.session.auth = true; //hay que probar de poner el objeto user
-      req.session.user = user;
-      console.log(user);
-      res.redirect('/chat/list');
     });
 };
 

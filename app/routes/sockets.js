@@ -21,7 +21,7 @@ router.route("/register").get(async (req, res, next) => {
 //add user
 router.post('/create', user.add);
 router.post('/create', function (req, res, next) {
-  res.render("index");
+  res.render("index", { auth: true });
 });
 
 //login
@@ -54,7 +54,7 @@ router.get('/history/view/:sala', message.getHistoryRoom);
 //delete history
 router.get('/history/delete/:sala', message.deleteHistory);
 
-//chat list
+//chat 
 router.get('/chat/view/:sala', function (req, res, next) {
   req.session.sala = req.params.sala;
   res.render("socket", { sala: req.params.sala });
