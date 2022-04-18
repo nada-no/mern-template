@@ -9,14 +9,16 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
                 a.nav-link(href='/chat/list') Chat
             li.nav-item.active
                 a.nav-link(href='/history/list') Historial
-        a.my-2.my-lg-0(href='/logout') Log Out
+        a.my-2.my-lg-0.text-white(href='/logout') Log Out
 
 block content
-    div.container
-        h1 Historial
-        h2 Selecciona la sala de chat  
-        div.btn-group-vertical
-            -for(var i = 1;i<6;i++){
-                a.btn.btn-primary(href=`/history/view/${i}`) Sala de chat #{i}
-            -}
+    .container.w-50.p-3
+        .row
+            .col.align-self-center
+                h1.py-3 Historial
+                h2.py-3 Selecciona la sala de chat  
+                div.btn-group-vertical.w-100
+                    -for(var i = 1;i<6;i++){
+                        a.btn.btn-primary(href=`/history/view/${i}`) Sala de chat #{i}
+                    -}
 

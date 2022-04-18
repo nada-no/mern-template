@@ -9,16 +9,18 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='/chat/list') Chat
       li.nav-item
         a.nav-link(href='/history/list') Historial
-    a.my-2.my-lg-0(href='/logout') Log Out
+    a.my-2.my-lg-0.text-white(href='/logout') Log Out
 
 block content
+  .container.w-50.p-3
+    .row
+      .col.align-self-center
+        h1.py-3 Historial sala 
+        
+        button.btn.btn-danger.w-100(id="delete") 
+          a.text-white(href=`/history/delete/${sala}`) Borrar historial
 
-  h1 Historial sala 
-  
-  div(id="chat") 
-  
-  button.btn.btn-default(id="delete") 
-    a(href=`/history/delete/${sala}`) Borrar historial
+        div.py-3(id="chat") 
 
   script(type='text/javascript') var historial = JSON.parse('!{JSON.stringify(history)}'); var sala = #{sala};
   script(type='text/javascript' src='/js/history.js')

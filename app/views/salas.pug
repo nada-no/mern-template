@@ -12,9 +12,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.my-2.my-lg-0.text-decoration-none.text-light(href='/logout') Log Out
 
 block content
-    div.container
-        h2 Selecciona la sala de chat   
-        div.btn-group-vertical
-            -for(var i = 1;i<6;i++){
-                    a.btn.btn-primary(href=`/chat/view/${i}`) Sala de chat #{i}
-            -}
+    .container.w-50.p-3
+        .row
+            .col.align-self-center
+                h2.py-3 Selecciona la sala de chat   
+                div.btn-group-vertical.w-100
+                    -for(var i = 1;i<6;i++){
+                            a.btn.btn-primary(href=`/chat/view/${i}`) Sala de chat #{i}
+                    -}
