@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log(data.msg);
   });
 
+
+  //emitimos la sala
+  socket.emit(sala);
+  
   /*
    * Acciones que se realizarán cuando otro usuario envia mensaje
    */
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       // Definimos el mensaje que vamos a enviar
       var date = new Date();
-      var toSend = { user: usuario.name, sala: sala, content: msg, date: date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + date.getSeconds() };
+      var toSend = { user: usuario.name, sala: sala, content: msg, date: date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds() };
 
       //Enviamos el mensaje al servidor utilizando el evento "broadcast" definido por nosotros
       

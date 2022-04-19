@@ -34,16 +34,19 @@ router.post('/login', function (req, res, next) {
 router.get('/logout', user.logout);
 
 //chat list
+router.get('/chat/list', user.auth);
 router.get('/chat/list', function (req, res, next) {
   res.render("salas");
 });
 
 //history list
+router.get('/history/list', user.auth);
 router.get('/history/list', function (req, res, next) {
   res.render("historyList");
 });
 
 //history
+router.get('/history/view/:sala', user.auth);
 router.get('/history/view/:sala', message.getHistoryRoom);
 // router.get('/history/view/:sala', async (req, res, next) => {
 //   var messages = await message.getHistoryRoom(req.params.sala)
@@ -52,9 +55,11 @@ router.get('/history/view/:sala', message.getHistoryRoom);
 // });
 
 //delete history
+router.get('/history/delete/:sala', user.auth);
 router.get('/history/delete/:sala', message.deleteHistory);
 
 //chat 
+router.get('/chat/view/:sala', user.auth);
 router.get('/chat/view/:sala', function (req, res, next) {
   req.session.sala = req.params.sala;
   res.render("socket", { sala: req.params.sala });

@@ -72,11 +72,20 @@ var logout = (req, res) => {
   // res.send("session destruida");
 };
 
+//middleware auth
+var auth = (req, res, next) => {
+  if(req.session.auth) {
+    next();
+  }else{
+    res.render("index", { auth: false });
+  }
+};
 
 module.exports = {
   add,
   list,
   find,
   login,
-  logout
+  logout,
+  auth
 }
