@@ -19,9 +19,8 @@ const io = new Server(socketServer, {
 
 //primera conexion
 io.on("connection", (socket) => {
-  socket.join(room);
-  console.log("Nuevo cliente conectado a la sala ");
-  socket.in(room).emit("connected", {
+  console.log("Nuevo cliente conectado a la sala " + session.sala);
+  socket.emit("connected", {
     msg: "Bienvenido al chat",
   });
 
@@ -30,8 +29,8 @@ io.on("connection", (socket) => {
   if (!socket.user) socket.user = "Pedro";
 
   //Todos los clientes que estén escuchando el evento "toChat" recibiran el mensaje enviado por el cliente que lanzó el mensaje
-  socket.on(room, (data) => {
-    socket.in(room).emit("toChat", data);
+  socket.on("broadcast", (data) => {
+    socket.broadcast.emit("toChat", data);
     mensaje.msgAdd(data);
   });
 });

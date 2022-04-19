@@ -11,10 +11,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log(data.msg);
   });
 
-
-  //emitimos la sala
-  socket.emit(sala);
-  
   /*
    * Acciones que se realizarán cuando otro usuario envia mensaje
    */
