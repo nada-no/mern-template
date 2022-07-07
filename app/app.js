@@ -24,7 +24,7 @@ server.listen(port, (err, res) => {
 
 //creamos la base de datos
 mongoose.connect(
-  `mongodb://root:pass12345@mongodb-chat:27017/users?authSource=admin`,
+  `mongodb://root:pass12345@mongodb-mern:27017/users?authSource=admin`,
   { useNewUrlParser: true },
   (err, res) => {
     if (err) console.log(`ERROR: connecting to Database.  ${err}`);

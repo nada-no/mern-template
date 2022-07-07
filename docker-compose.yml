@@ -4,7 +4,7 @@ services:
   #NODE Service
   app:
     image: node:${NODE_V}
-    container_name: app_${DOCKER_NAME}
+    container_name: server-mern
     restart: unless-stopped
     entrypoint: sh /init.sh
     tty: true
@@ -21,7 +21,7 @@ services:
   #MongoDB   
   mongodb:
     image: mongo:4.4.6
-    container_name: mongodb-chat
+    container_name: mongodb-mern
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass12345
@@ -35,7 +35,7 @@ services:
   #Mongo-express
   mongo-express:
     image: mongo-express
-    container_name: mongo-express-chat
+    container_name: mongo-express-mern
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongodb
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
