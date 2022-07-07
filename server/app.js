@@ -33,7 +33,6 @@ mongoose.connect(
 );
 
 // Import routes of our app
-
 var socketsRouter = require("./routes/router");
 var handlerError = require("./routes/handler");
 

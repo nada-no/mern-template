@@ -1,2 +1,3 @@
-app/node-modules/
+server/node-modules/
 mongodb-data/
+ui/node-modules/

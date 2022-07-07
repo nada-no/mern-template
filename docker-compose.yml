@@ -8,9 +8,9 @@ services:
     restart: unless-stopped
     entrypoint: sh /init.sh
     tty: true
-    working_dir: /app
+    working_dir: /server
     volumes:
-      - ${PROJECT_PATH}:/app
+      - ${PROJECT_PATH}:/server
       - ./init.sh:/init.sh
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
