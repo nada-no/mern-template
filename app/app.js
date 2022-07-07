@@ -1,4 +1,3 @@
-require("./io");
 require("dotenv").config();
 
 const port = process.env.SERVER_PORT || 3000;
@@ -9,13 +8,12 @@ var express = require("express"),
 mongoose = require('mongoose');
 var session = require("express-session");
 app.use(session({ secret: 'keyboard cat', auth: false , resave: true, saveUninitialized: true}));
-// app.use(express.session(
-//   { secret: "secret", store: new MemoryStore(), maxAge: 86400
-//   }));
+
 app.use(function(req,res,next){
   res.locals.session = req.session;
   next();
 });
+
 
 
 
@@ -36,7 +34,7 @@ mongoose.connect(
 
 // Import routes of our app
 
-var socketsRouter = require("./routes/sockets");
+var socketsRouter = require("./routes/router");
 var handlerError = require("./routes/handler");
 
 // view engine setup
@@ -50,7 +48,5 @@ app.use(express.static(path.join(__dirname, "public")));
 // Define routes using URL path
 app.use("/", socketsRouter);
 app.use(handlerError);
-
-/*Socket functions */
 
 module.exports = app;
