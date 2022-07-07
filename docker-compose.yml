@@ -14,7 +14,6 @@ services:
       - ./init.sh:/init.sh
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
-      - ${SOCKET_PORT}:${SOCKET_PORT}
     networks:
       - app-network
 
